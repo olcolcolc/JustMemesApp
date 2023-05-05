@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import googleFonts from 'google-fonts';
+import NavbarComponent from './components/navbar/NavbarComponent';
+import MemeContainer from './components/meme-container/MemeContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    //adding google fonts to script
+    googleFonts.add({
+      'Nunito': true,
+    });
+    document.body.style.fontFamily = 'Nunito, sans-serif';
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <NavbarComponent />
+        <MemeContainer/>
+      </div>
+    );
+  }
 }
 
 export default App;
