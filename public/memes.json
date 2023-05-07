@@ -1,0 +1,29 @@
+{
+    "memes": [
+      {
+        "id": 1,
+        "url": "https://cdn.shopify.com/s/files/1/2046/8557/articles/yellow-octopus-spongebob-memes-5.jpg?v=1611874317",
+        "likes": 10,
+        "dislikes": 2
+      },
+      {
+        "id": 2,
+        "url": "https://preview.redd.it/5m6sn1vvlv681.png?auto=webp&v=enabled&s=c53263fb2f0c9db4bf7212767f0032bfaa305d4b",
+        "likes": 5,
+        "dislikes": 1
+      },
+      {
+        "id": 3,
+        "url": "https://b1694534.smushcdn.com/1694534/wp-content/uploads/2021/06/variable.jpeg?lossy=1&strip=1&webp=1",
+        "likes": 3,
+        "dislikes": 4
+      },
+      {
+        "id": 4,
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjavascript.plainenglish.io%2F20-more-javascript-memes-b9f4c3e49f90&psig=AOvVaw30M6ZUgO5Hpyh2htoFfeg-&ust=1683553384296000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLiG66Or4_4CFQAAAAAdAAAAABAR",
+        "likes": 1,
+        "dislikes": 8
+      }
+    ]
+  }
+  

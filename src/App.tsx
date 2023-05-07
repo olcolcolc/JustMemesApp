@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import googleFonts from 'google-fonts';
 import NavbarComponent from './components/navbar/NavbarComponent';
-import MemeContainer from './components/meme-container/MemeContainer';
+import MemeCard from './components/meme-card/MemeCard';
 
 class App extends React.Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <NavbarComponent />
-        <MemeContainer/>
+        <MemeCard/>
       </div>
     );
   }
