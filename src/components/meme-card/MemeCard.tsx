@@ -47,15 +47,15 @@ const handleVote = (id: number, vote: "+" | "-") => {
     }
 
       // Update rating in the API
-      // axios.put(`https://example.com/memes/${id}`, {
-      //   likes: newMemes[memeIndex].likes
-      // })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     console.error(error);
-      //   });
+      axios.put('/memes.json', {
+        likes: newMemes[memeIndex].likes
+      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.error(error);
+        });      
 
     // Return the updated memes array to set the new state
       return newMemes;
