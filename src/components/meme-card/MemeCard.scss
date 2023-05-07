@@ -29,7 +29,13 @@
     &__votes {
     margin-bottom: 20px;
     display: flex;
+    width: 300px;
+    justify-content: space-between;
     align-items: center;
+
+        &-likes{
+            font-size: 30px;
+        }
 
         &-likesBtn, &-dislikesBtn{
         margin: 0 10px;
@@ -45,10 +51,6 @@
         &:active{
             transform: translateY(-5px);
             }
-        }
-
-        &-dislikesBtn{
-            margin-left: 100px;
         }
 
     }

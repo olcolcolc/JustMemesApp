@@ -7,8 +7,7 @@ import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 interface Meme {
   id: number;
   url: string;
-  likes: number;
-  dislikes: number;
+  likes: number
 }
 
 interface MemeCardProps {}
@@ -43,15 +42,14 @@ const MemeCard: React.FC<MemeCardProps> = () => {
             {/* like */}
             <button className='memeCard__votes-likesBtn'>
               <FontAwesomeIcon icon={faThumbsUp} /></button>
-            <span className='memeCard__votes-likes'>
-              {meme.likes}</span>
+
+            <div className='memeCard__votes-likes'>
+              {meme.likes}</div>
 
             {/* dislike */}
             <button className='memeCard__votes-dislikesBtn'>
               <FontAwesomeIcon icon={faThumbsDown} /></button>
-            <span className='memeCard__votes-likes'>
-              {meme.dislikes}</span>
-              
+
           </div>
         </div>
       ))}
