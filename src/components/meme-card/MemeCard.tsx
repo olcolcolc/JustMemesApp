@@ -18,7 +18,7 @@ const MemeCard: React.FC<MemeCardProps> = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
 
   React.useEffect(() => {
-    axios.get('https://raw.githubusercontent.com/olcolcolc/JustMemesApp/master/public/memes.json')
+    axios.get('/memes.json')
       .then(response => {
         setMemes(response.data.memes);
       })
