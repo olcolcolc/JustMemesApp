@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 import googleFonts from 'google-fonts';
 import NavbarComponent from './components/navbar/NavbarComponent';
-import MemeCard from './components/meme-card/MemeCard';
+import LandingPage from './pages/landing-page/LandingPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -15,12 +17,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <NavbarComponent />
-        <MemeCard/>
-      </div>
+      <BrowserRouter>
+        <NavbarComponent/>
+          <Routes>
+            <Route path="/" Component={LandingPage} />
+          </Routes>
+      </BrowserRouter>
     );
   }
 }
+
 
 export default App;
