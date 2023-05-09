@@ -14,7 +14,9 @@ const Navbar: React.FC<NavbarProps> = () => {
           <Link to="/top">
             <button className='navbar__btn-top'>Top</button>
           </Link>
+          <Link to="/regular">
           <button className='navbar__btn-regular'>Regular</button>
+          </Link>
         </div>
     </nav>
   );
