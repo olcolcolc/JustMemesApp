@@ -27,30 +27,78 @@
   }
   
   .postNewMeme__modal {
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    width: 400px;
+    &-container {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      width: 400px;
+      height: 350px;
+      display: flex;
+
+      &-closeBtn {
+        position: fixed;
+        font-size: 15px;
+        top: 8px;
+        right: 8px;
+        cursor: pointer;
+      }
+    }
   
-    & .modal-dialog {
-      margin: 0;
+    &-btnContainer-btns {
+      border: none;
+      width: 100px;
+      justify-content: center;
+      text-align: center;
+      margin: 20px 10px 10px 10px;
+      background: #34A9D1;
+      border-radius: 20px;
+      font-family: 'Nunito';
+      font-weight: 70;
+      font-size: 20px;
+      line-height: 49px;
+      color: #ffffff;
+      transition: box-shadow 0.25s;
+  
+      &:hover {
+        background-color: #77298e;
+        cursor: pointer;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+      }
+    }
+  
+    &-content {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: center;
+    
+      &-title{
+        font-size: 30px;
+        margin-bottom: 10px
+      }
+      &-formControl{
+        padding:10px;
+        margin: 10px;
+        font-size: 20px;
+        height: 40px;
+      }
+    
     }
   }
   
-  .postNewMeme__modal-header {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 10px 10px 0 0;
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
-  
-  .postNewMeme__modal-footer {
-    border-top: none;
-    border-radius: 0 0 10px 10px;
-  }
+
+
   
