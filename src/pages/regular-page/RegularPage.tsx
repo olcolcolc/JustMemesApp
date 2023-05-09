@@ -4,16 +4,16 @@ import {collection, onSnapshot} from 'firebase/firestore'
 import { memesDb } from '../../firebase/firebase-config'
 import {Meme} from '../../interfaces/MemeInterface'
 
-interface TopPageProps {
+interface RegularPageProps {
   className?: string;
 }
 
-const TopPage: React.FC<TopPageProps> = () => {
+const RegularPage: React.FC<RegularPageProps> = () => {
 
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const memesCollectionRef = collection(memesDb,"memes")
 
-const subscribeToTopMemes = () => {
+const subscribeToRegularMemes = () => {
   return onSnapshot(memesCollectionRef, (querySnapshot) => {
     const memesData = querySnapshot.docs.map((doc) => {
       return {
@@ -23,13 +23,13 @@ const subscribeToTopMemes = () => {
         likes: doc.data().likes,
       };
     });
-    const topMemesData = memesData.filter((meme) => meme.likes > 5);
-    setMemes(topMemesData);
+    const regularMemesData = memesData.filter((meme) => meme.likes <= 5);
+    setMemes(regularMemesData);
   });
 };
 
 React.useEffect(() => {
-  const unsubscribe = subscribeToTopMemes();
+  const unsubscribe = subscribeToRegularMemes();
 
   // cleanup function to unsubscribe from the listener when the component unmounts
   return () => {
@@ -48,4 +48,4 @@ React.useEffect(() => {
   );
 };
 
-export default TopPage;
+export default RegularPage;

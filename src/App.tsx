@@ -5,6 +5,7 @@ import NavbarComponent from './components/navbar/NavbarComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TopPage from './pages/top-page/TopPage';
 import LandingPage from './pages/landing-page/LandingPage';
+import RegularPage from './pages/regular-page/RegularPage';
 
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
           <Routes>
             <Route path="/" Component={LandingPage} />
             <Route path="/top" Component={TopPage} />
+            <Route path="/regular" Component={RegularPage} />
           </Routes>
       </BrowserRouter>
     );
