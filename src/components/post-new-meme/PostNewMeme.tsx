@@ -27,7 +27,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
       await addDoc(memesCollectionRef, newMeme);
       setUrl('');
       setTitle('');
-      onClose(); // zamknij modal
+      onClose(); 
     } catch (error) {
       console.error(error);
     }
@@ -37,45 +37,46 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     <div onClick={onClose} className='overlay'>
       <div
             onClick={(e) =>{
-                e.stopPropagation();
+            e.stopPropagation();
             }}
-            className="postNewMeme__modal"
+            className="postNewMeme__modal-container"
             >
         <p  onClick={onClose} 
-            className='postNewMeme__modal-closeBtn'>
+            className='postNewMeme__modal-container-closeBtn'>
             X
           </p>
+          <div className='postNewMeme__modal-content'>
+            <div className='postNewMeme__modal-content-title'>Add your meme</div>
           <form>
-            <div className="form-group">
-              <label htmlFor="url">URL</label>
+            <div className="postNewMeme__modal-content-formGroup">
               <input
                 type="text"
-                className="form-control"
+                className="postNewMeme__modal-content-formControl"
                 id="url"
-                placeholder="Enter URL"
+                placeholder="Enter your meme URL"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="title">Title</label>
               <input
                 type="text"
-                className="form-control"
+                className="postNewMeme__modal-content-formControl"
                 id="title"
-                placeholder="Enter title"
+                placeholder="Enter your meme title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
           </form>
           <div className="postNewMeme__modal-btnContainer">
-          <button color="primary" onClick={addMeme}>
+          <button className="postNewMeme__modal-btnContainer-btns" onClick={addMeme}>
             Add
-          </button>{' '}
-          <button color="secondary" onClick={onClose}>
+          </button>
+          <button className="postNewMeme__modal-btnContainer-btns" onClick={onClose}>
             Cancel
           </button>
+          </div>
         </div>
       </div>
     </div>
