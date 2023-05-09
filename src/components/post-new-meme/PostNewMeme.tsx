@@ -1,20 +1,21 @@
 import * as React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { addDoc, collection } from 'firebase/firestore';
 import { memesDb } from '../../firebase/firebase-config';
 import { Meme } from '../../interfaces/MemeInterface';
 import './PostNewMeme.scss'
 
 interface PostNewMemeProps {
-  onCloseModal: () => void;
+    open: boolean;
+    onClose: () => void;
 }
 
-const PostNewMeme: React.FC<PostNewMemeProps> = ({ onCloseModal }) => {
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [url, setUrl] = React.useState('');
-  const [title, setTitle] = React.useState('');
+const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
+    if(!open) return null;
 
-  const toggleModal = () => setModalOpen(!modalOpen);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [url, setUrl] = React.useState('');
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [title, setTitle] = React.useState('');
 
   const addMeme = async () => {
     const memesCollectionRef = collection(memesDb, 'memes');
@@ -26,28 +27,24 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ onCloseModal }) => {
       await addDoc(memesCollectionRef, newMeme);
       setUrl('');
       setTitle('');
-      toggleModal();
-      onCloseModal(); // zamknij modal
+      onClose(); // zamknij modal
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <>
-      <Button
-        onClick={toggleModal}
-        className="postNewMeme__btn"
-      >+
-      </Button>
-      <Modal isOpen={modalOpen} 
-             toggle={toggleModal}
-             className="postNewMeme__modal"
-             >
-        <ModalHeader toggle={toggleModal}
-                    className="postNewMeme__modal-header"
-                    >Add new meme</ModalHeader>
-        <ModalBody className="postNewMeme__modal-content">
+    <div onClick={onClose} className='overlay'>
+      <div
+            onClick={(e) =>{
+                e.stopPropagation();
+            }}
+            className="postNewMeme__modal"
+            >
+        <p  onClick={onClose} 
+            className='postNewMeme__modal-closeBtn'>
+            X
+          </p>
           <form>
             <div className="form-group">
               <label htmlFor="url">URL</label>
@@ -72,18 +69,16 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ onCloseModal }) => {
               />
             </div>
           </form>
-        </ModalBody>
-        <ModalFooter
-        className="postNewMeme__modal-footer">
-          <Button color="primary" onClick={addMeme}>
+          <div className="postNewMeme__modal-btnContainer">
+          <button color="primary" onClick={addMeme}>
             Add
-          </Button>{' '}
-          <Button color="secondary" onClick={toggleModal}>
+          </button>{' '}
+          <button color="secondary" onClick={onClose}>
             Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
-    </>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
