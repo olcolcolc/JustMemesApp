@@ -3,7 +3,7 @@ import "./MemeCard.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { memesDb } from '../../firebase/firebase-config'
-import {getDocs, collection} from 'firebase/firestore'
+import {getDocs, updateDoc, doc, collection} from 'firebase/firestore'
 
 
 interface Meme {
@@ -38,19 +38,16 @@ const MemeCard: React.FC<MemeCardProps> = () => {
       console.error(error);
     }
   };
-  
-  
 
     React.useEffect(() => {
       getMemes();
     }, []);
 
 
-
-
  //param id - ID of the meme to vote on.
  //param vote - either "+" for upvote or "-" for downvote.
-const handleVote = (id: string, vote: "+" | "-") => {
+ const handleVote = async (id: string, vote: "+" | "-") => {
+  console.log("+1")
   // Update the state of the memes array
   setMemes(prevMemes => {
     // Create a new copy of the memes array (newMemes)
@@ -60,26 +57,19 @@ const handleVote = (id: string, vote: "+" | "-") => {
     // If the vote is an upvote, increment
     if (vote === "+") {
       newMemes[memeIndex].likes++;
-    // If the vote is a downvote, decrement
+      // Update the value of likes in the corresponding document in Firestore
+      updateDoc(doc(memesDb, 'memes', id), { likes: newMemes[memeIndex].likes });
+      console.log("+")
+      // If the vote is a downvote, decrement
     } else if (vote === "-") {
       newMemes[memeIndex].likes--;
-    }
-
-      // Update rating in the API
-      // axios.put('/memes.json', {
-      //   likes: newMemes[memeIndex].likes
-      // })
-      //   .then(response => {
-      //     console.log(response);
-      //   })
-      //   .catch(error => {
-      //     console.error(error);
-      //   });      
-
+      // Update the value of likes in the corresponding document in Firestore
+      updateDoc(doc(memesDb, 'memes', id), { likes: newMemes[memeIndex].likes });
+    }     
     // Return the updated memes array to set the new state
-      return newMemes;
-    });
-  };
+    return newMemes;   
+  });
+};
   
   
   return (
