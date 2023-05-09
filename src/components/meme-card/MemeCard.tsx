@@ -4,14 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { memesDb } from '../../firebase/firebase-config'
 import {getDocs, updateDoc, doc, collection} from 'firebase/firestore'
+import {Meme} from '../../interfaces/MemeInterface'
 
-
-interface Meme {
-  title: string;
-  id: string;
-  url: string;
-  likes: number
-}
 
 interface MemeCardProps {
   className?: string;
