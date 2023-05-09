@@ -35,9 +35,11 @@ const LandingPage: React.FC<LandingPageProps> = () => {
 
   return (
     <div className='landingPage'>
+      <div className='memeContainer'>
       {memes.map(meme => (
         <MemeCard key={meme.id} meme={meme} />
       ))}
+      </div>
     </div>
   );
 };
