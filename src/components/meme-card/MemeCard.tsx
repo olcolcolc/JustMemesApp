@@ -38,7 +38,7 @@ const MemeCard: React.FC<MemeCardProps> = ({meme}) => {
 
   return (
     <div className='memeCard'>
-      <img className='memeCard__img' src={meme.url} alt='meme' />
+      <img className='memeCard__img' src={meme.url} alt={meme.title} />
       <div className='memeCard__votes'>
         <button className='memeCard__votes-likeBtn' onClick={() => handleVote(meme.id, "+")}>
           <FontAwesomeIcon icon={faThumbsUp} />
