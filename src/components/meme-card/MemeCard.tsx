@@ -22,22 +22,31 @@ const MemeCard: React.FC<MemeCardProps> = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const memesCollectionRef = collection(memesDb,"memes")
 
-  React.useEffect(() => {
-    const getMemes = async () => {
-    //READ THE DATA
-    //SET THE MEME LIST
-    try{
-      const data = await getDocs(memesCollectionRef)
-      console.log(data)
-    } catch (err) {
-      console.error(err)
+  const getMemes = async () => {
+    try {
+      const data = await getDocs(memesCollectionRef);
+      const memesData = data.docs.map((doc) => {
+        return {
+          id: doc.id,
+          title: doc.data().title,
+          url: doc.data().url,
+          likes: doc.data().likes,
+        };
+      });
+      setMemes(memesData);
+    } catch (error) {
+      console.error(error);
     }
-    }
-    getMemes()
-  }, [memesCollectionRef])
-
-
+  };
   
+  
+
+    React.useEffect(() => {
+      getMemes();
+    }, []);
+
+
+
 
  //param id - ID of the meme to vote on.
  //param vote - either "+" for upvote or "-" for downvote.
