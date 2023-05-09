@@ -47,7 +47,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ onCloseModal }) => {
         <ModalHeader toggle={toggleModal}
                     className="postNewMeme__modal-header"
                     >Add new meme</ModalHeader>
-        <ModalBody>
+        <ModalBody className="postNewMeme__modal-content">
           <form>
             <div className="form-group">
               <label htmlFor="url">URL</label>
