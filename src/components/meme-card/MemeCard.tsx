@@ -15,8 +15,6 @@ interface MemeCardProps {
 const MemeCard: React.FC<MemeCardProps> = ({meme}) => {
 
   const [likes, setLikes] = React.useState(meme.likes);
-
-
   
   const handleVote = async (id: string, vote: "+" | "-") => {
     const memeRef = doc(memesDb, "memes", id);
