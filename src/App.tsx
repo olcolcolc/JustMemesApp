@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import googleFonts from 'google-fonts';
 import NavbarComponent from './components/navbar/NavbarComponent';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -16,6 +16,9 @@ function App() {
     document.body.style.fontFamily = 'Nunito, sans-serif';
   }, []);
 
+
+  const [openModal, setModalOpen] = useState(false);
+
   return (
     <BrowserRouter>
       <NavbarComponent />
@@ -24,7 +27,16 @@ function App() {
         <Route path="/top" element={<TopPage />} />
         <Route path="/regular" element={<RegularPage />} />
       </Routes>
-      <PostNewMeme onCloseModal={() => {}} />
+      <button
+        onClick={() => setModalOpen(true)}
+        className="postNewMeme__btn"
+      >+
+      </button>
+
+      <PostNewMeme 
+        open={openModal}
+        onClose={() => setModalOpen(false)}
+/>
     </BrowserRouter>
   );
 }
