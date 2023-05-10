@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <NavbarComponent />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/JustMemesApp" element={<LandingPage />} />
         <Route path="/top" element={<TopPage />} />
         <Route path="/regular" element={<RegularPage />} />
       </Routes>
