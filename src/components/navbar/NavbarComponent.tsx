@@ -9,7 +9,9 @@ interface NavbarProps {}
 const Navbar: React.FC<NavbarProps> = () => {
   return (
     <nav className='navbar'>
-        <img className='navbar__logo' src={logoIMG} alt="Just Meme logo"></img>
+        <Link to="/JustMemesApp">
+          <img className='navbar__logo' src={logoIMG} alt="Just Meme logo"></img>
+        </Link>
         <div className='navbar__btnContainer'>
           <Link to="/top">
             <button className='navbar__btn-top'>Top</button>
