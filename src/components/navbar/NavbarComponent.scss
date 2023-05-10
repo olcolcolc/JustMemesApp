@@ -18,6 +18,13 @@
 		margin-right: 20px;
 	}
 
+	// &__btnContaner{
+	// 	display: flex;
+	// 	flex-direction: row;
+	// 	justify-content: center;
+	// 	align-items: center;
+	// }
+
 	&__btn-top, &__btn-regular{
 		  border: none;
 		  width: 200px;
@@ -45,3 +52,23 @@
 	}
 }
 
+@media (max-width: 630px) {
+	.navbar{
+
+		&__logo{
+			margin-left: -10px;
+		}
+		&__btnContainer{
+			display: flex;
+			flex-direction: row;  		
+		}
+
+		&__btn-top, &__btn-regular{
+		width: 100px;  
+		font-size: 20px;
+		padding: 1rem 1rem;
+	}
+}
+	
+
+}
