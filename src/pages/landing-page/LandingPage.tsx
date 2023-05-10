@@ -4,6 +4,7 @@ import {getDocs, collection} from 'firebase/firestore'
 import { memesDb } from '../../firebase/firebase-config'
 import {Meme} from '../../interfaces/MemeInterface'
 
+
 interface LandingPageProps {
   className?: string;
 }
