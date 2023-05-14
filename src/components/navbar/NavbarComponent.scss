@@ -48,9 +48,6 @@
 @media (max-width: 630px) {
 	.navbar{
 
-		&__logo{
-			margin-left: -10px;
-		}
 		&__btnContainer{
 			display: flex;
 			flex-direction: row;  		
@@ -58,10 +55,20 @@
 
 		&__btn-top, &__btn-regular{
 		width: 100px;  
-		font-size: 20px;
-		padding: 1rem 1rem;
+		font-size: 22px;
+		padding: 1rem 0.8rem;
 	}
 }
-	
+
+}
+
+@media (max-width: 320px) {
+	.navbar{
+		&__btn-top, &__btn-regular{
+		width: 80px;  
+		font-size: 18px;
+		padding: 1rem 0.5rem;
+	}
+}
 
 }

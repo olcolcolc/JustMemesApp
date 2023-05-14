@@ -24,8 +24,6 @@ const Navbar: React.FC<NavbarProps> = () => {
   );
 };
 
-//npm run deploy on gh-pages
-
 
 
 export default Navbar;
