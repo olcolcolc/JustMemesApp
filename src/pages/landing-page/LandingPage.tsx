@@ -11,7 +11,6 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const memesCollectionRef = collection(memesDb,"memes")
-  console.log("cokowiek")
   const getMemes = async () => {
     try {
       const data = await getDocs(memesCollectionRef);
