@@ -6,6 +6,7 @@ import TopPage from './pages/top-page/TopPage';
 import LandingPage from './pages/landing-page/LandingPage';
 import RegularPage from './pages/regular-page/RegularPage';
 import PostNewMeme from './components/post-new-meme/PostNewMeme';
+import ThemeSwitcher from './components/theme-switcher/ThemeSwitcher';
 
 function App() {
   useEffect(() => {
@@ -23,7 +24,7 @@ function App() {
     <BrowserRouter>
       <NavbarComponent/>
       <Routes>
-        <Route path="/JustMemesApp" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/top" element={<TopPage />} />
         <Route path="/regular" element={<RegularPage />} />
       </Routes>
@@ -35,8 +36,9 @@ function App() {
 
       <PostNewMeme 
         open={openModal}
-        onClose={() => setModalOpen(false)}
-/>
+        onClose={() => setModalOpen(false)}/>
+      <ThemeSwitcher/>
+
     </BrowserRouter>
   );
 }

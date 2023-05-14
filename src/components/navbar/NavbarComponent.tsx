@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./NavbarComponent.scss";
-import logoIMG from '../../assets/logo.png'
+import logoIMG from '../../assets/logo.svg'
 import { Link } from 'react-router-dom';
 
 
@@ -8,8 +8,8 @@ interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
   return (
-    <nav className='navbar'>
-        <Link to="/JustMemesApp">
+<nav className="navbar">
+        <Link to="/">
           <img className='navbar__logo' src={logoIMG} alt="Just Meme logo"></img>
         </Link>
         <div className='navbar__btnContainer'>
@@ -23,6 +23,8 @@ const Navbar: React.FC<NavbarProps> = () => {
     </nav>
   );
 };
+
+//npm run deploy on gh-pages
 
 
 
