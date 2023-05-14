@@ -23,10 +23,15 @@ code {
   /* Light Mode */
   --bg--light: #fff;
   --txt--light: #2f2e30;
+  --btn--light: #34A9D1;
+  --btn--light-hover: #77298e;
   
   /* Dark mode */
   --bg--dark: #2f2e30;
   --txt--dark: #b0adad;
+  --btn--dark: #77298e;
+  --btn--dark-hover: #34A9D1;
+
   }
   
   
@@ -35,12 +40,16 @@ code {
     --bs-body-bg: var(--bg--light);	
     /* txt color	 */
     --bs-body-color: var(--txt--light);
+    --bs-btn-color: var(--btn--light);
+    --bs-btn-hover: var(--btn--light-hover);
     color-scheme: light;
   }
   
   :root[color-scheme="dark"]{
     --bs-body-bg: var(--bg--dark);
     --bs-body-color: var(--txt--dark);
+    --bs-btn-color: var(--btn--dark);
+    --bs-btn-hover: var(--btn--dark-hover);
     color-scheme: dark;
   }
   
