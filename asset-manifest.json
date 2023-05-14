@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/JustMemesApp/static/css/main.bce3eced.css",
-    "main.js": "/JustMemesApp/static/js/main.9de3ac16.js",
+    "main.css": "/JustMemesApp/static/css/main.8fc83a40.css",
+    "main.js": "/JustMemesApp/static/js/main.92ec4b13.js",
     "static/js/787.8f3cab0d.chunk.js": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js",
-    "static/media/logo.png": "/JustMemesApp/static/media/logo.96e044586cbafe6857b4.png",
+    "static/media/logo.svg": "/JustMemesApp/static/media/logo.7122cb7706d47aaf99e2d4890cf6f317.svg",
     "index.html": "/JustMemesApp/index.html",
-    "main.bce3eced.css.map": "/JustMemesApp/static/css/main.bce3eced.css.map",
-    "main.9de3ac16.js.map": "/JustMemesApp/static/js/main.9de3ac16.js.map",
+    "main.8fc83a40.css.map": "/JustMemesApp/static/css/main.8fc83a40.css.map",
+    "main.92ec4b13.js.map": "/JustMemesApp/static/js/main.92ec4b13.js.map",
     "787.8f3cab0d.chunk.js.map": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bce3eced.css",
-    "static/js/main.9de3ac16.js"
+    "static/css/main.8fc83a40.css",
+    "static/js/main.92ec4b13.js"
   ]
 }
