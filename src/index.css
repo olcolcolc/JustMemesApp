@@ -21,12 +21,12 @@ code {
 :root{
 	
   /* Light Mode */
-  --bg--light: white;
-  --txt--light: black;
+  --bg--light: #fff;
+  --txt--light: #2f2e30;
   
   /* Dark mode */
   --bg--dark: #2f2e30;
-  --txt--dark: white;
+  --txt--dark: #b0adad;
   }
   
   
