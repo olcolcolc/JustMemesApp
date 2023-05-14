@@ -8,22 +8,15 @@
 	box-sizing: border-box;
 	height: 90px;
 	padding: 0 4% 0 4%;
-	background-color: #fff;
+	background-color: var(--bs-body-bg);
+	color: var(--bs-body-color);
 	box-shadow: 0 0 30px 0 rgba(0,0,0,.4);
 
 	&__logo{
 		width: 100px;
 		height: auto;
 		font-family: "Squada One",sans-serif;
-		margin-right: 20px;
 	}
-
-	// &__btnContaner{
-	// 	display: flex;
-	// 	flex-direction: row;
-	// 	justify-content: center;
-	// 	align-items: center;
-	// }
 
 	&__btn-top, &__btn-regular{
 		  border: none;

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/JustMemesApp/static/css/main.0469c11b.css",
+    "main.js": "/JustMemesApp/static/js/main.ddb407a5.js",
+    "static/js/787.8f3cab0d.chunk.js": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js",
+    "static/media/logo.png": "/JustMemesApp/static/media/logo.96e044586cbafe6857b4.png",
+    "index.html": "/JustMemesApp/index.html",
+    "main.0469c11b.css.map": "/JustMemesApp/static/css/main.0469c11b.css.map",
+    "main.ddb407a5.js.map": "/JustMemesApp/static/js/main.ddb407a5.js.map",
+    "787.8f3cab0d.chunk.js.map": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0469c11b.css",
+    "static/js/main.ddb407a5.js"
+  ]
+}

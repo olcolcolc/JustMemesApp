@@ -17,3 +17,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+	
+  /* Light Mode */
+  --bg--light: white;
+  --txt--light: black;
+  
+  /* Dark mode */
+  --bg--dark: #2f2e30;
+  --txt--dark: white;
+  }
+  
+  
+  :root[color-scheme="light"]{
+    /* body background color */
+    --bs-body-bg: var(--bg--light);	
+    /* txt color	 */
+    --bs-body-color: var(--txt--light);
+    color-scheme: light;
+  }
+  
+  :root[color-scheme="dark"]{
+    --bs-body-bg: var(--bg--dark);
+    --bs-body-color: var(--txt--dark);
+    color-scheme: dark;
+  }
+  
+  
