@@ -22,7 +22,7 @@
 		  border: none;
 		  width: 200px;
 		  margin: 0 10px;
-		  background: #34A9D1;
+		  background: var(--bs-btn-color);
 		  border-radius: 40px;
 		  padding: 1.2rem 2rem;
 		  font-family: 'Nunito';
@@ -33,14 +33,10 @@
 		  transition: box-shadow 0.25s;
 		
 		&:hover{
-			background-color: #77298e;
+			background: var(--bs-btn-hover);
 			cursor: pointer;
 			box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 		  }
-
-		&--active{
-			background-color: #77298e;
-		}
 		
 	}
 }

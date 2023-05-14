@@ -7,9 +7,15 @@
     bottom: 100px;
     right: 36px;
     z-index: 9999;
+    transition: transform 0.2s ease-in-out;
 
     &:hover{
         color: #097fd8;
         cursor: pointer;
+        transform: scale(1.1);
+
     }
+    &:active {
+        transform: translateY(-10px);
+          }
 }
