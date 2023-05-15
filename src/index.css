@@ -22,6 +22,7 @@ code {
 	
   /* Light Mode */
   --bg--light: #fff;
+  --bg-s-light: #fff;
   --txt--light: #2f2e30;
   --btn--light: #34A9D1;
   --btn--light-hover: #77298e;
@@ -50,7 +51,7 @@ code {
   
   :root[color-scheme="dark"]{
     --bs-body-bg: var(--bg--dark);
-    --bs-bg-secondary: var(--bg-s-dark)
+    --bs-bg-secondary: var(--bg-s-dark);
     --bs-body-color: var(--txt--dark);
     --bs-btn-color: var(--btn--dark);
     --bs-btn-hover: var(--btn--dark-hover);
