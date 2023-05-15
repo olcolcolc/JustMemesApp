@@ -28,6 +28,7 @@ function App() {
         <Route path="/top" element={<TopPage />} />
         <Route path="/regular" element={<RegularPage />} />
       </Routes>
+      <ThemeSwitcher/>
       <button
         onClick={() => setModalOpen(true)}
         className="postNewMeme__btn"
@@ -36,9 +37,8 @@ function App() {
 
       <PostNewMeme 
         open={openModal}
-        onClose={() => setModalOpen(false)}/>
-      <ThemeSwitcher/>
-
+        onClose={() => setModalOpen(false)}
+/>
     </BrowserRouter>
   );
 }
