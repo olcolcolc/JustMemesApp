@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/JustMemesApp/static/css/main.10c09d31.css",
+    "main.css": "/JustMemesApp/static/css/main.992b914c.css",
     "main.js": "/JustMemesApp/static/js/main.d40cd695.js",
     "static/js/787.8f3cab0d.chunk.js": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js",
     "static/media/logo.svg": "/JustMemesApp/static/media/logo.7122cb7706d47aaf99e2d4890cf6f317.svg",
     "index.html": "/JustMemesApp/index.html",
-    "main.10c09d31.css.map": "/JustMemesApp/static/css/main.10c09d31.css.map",
+    "main.992b914c.css.map": "/JustMemesApp/static/css/main.992b914c.css.map",
     "main.d40cd695.js.map": "/JustMemesApp/static/js/main.d40cd695.js.map",
     "787.8f3cab0d.chunk.js.map": "/JustMemesApp/static/js/787.8f3cab0d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.10c09d31.css",
+    "static/css/main.992b914c.css",
     "static/js/main.d40cd695.js"
   ]
 }
