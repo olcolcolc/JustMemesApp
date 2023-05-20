@@ -17,7 +17,6 @@ function App() {
     document.body.style.fontFamily = 'Nunito, sans-serif';
   }, []);
 
-
   const [openModal, setModalOpen] = useState(false);
 
   return (
