@@ -12,8 +12,6 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const memesCollectionRef = collection(memesDb,"memes")
 
-
-
   // const getMemes = async () => {
   //   try {
   //     const data = await getDocs(memesCollectionRef);
@@ -57,6 +55,7 @@ const LandingPage: React.FC<LandingPageProps> = () => {
         };
       });
       setMemes(memesData);
+      console.log("show memes")
     });
   };
   

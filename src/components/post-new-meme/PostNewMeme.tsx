@@ -33,6 +33,11 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     }
   };
 
+
+  //TODO na osobnym branczu sprobować zmienić interface meme, zmienić id
+  // zeby post meme przyjmowal id ostatnie plus 1
+  // zeby w landing page pokazywalo sie malejąco memy
+  
   return (
     <div onClick={onClose} className='overlay'>
       <div
