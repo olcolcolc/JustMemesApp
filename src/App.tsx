@@ -7,6 +7,7 @@ import LandingPage from './pages/landing-page/LandingPage';
 import RegularPage from './pages/regular-page/RegularPage';
 import PostNewMeme from './components/post-new-meme/PostNewMeme';
 import ThemeSwitcher from './components/theme-switcher/ThemeSwitcher';
+import Error404 from './pages/error404/Error404';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/top" element={<TopPage />} />
         <Route path="/regular" element={<RegularPage />} />
+        <Route path="*" element={<Error404/>} />
       </Routes>
       <ThemeSwitcher/>
       <button
