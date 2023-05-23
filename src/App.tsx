@@ -8,6 +8,7 @@ import RegularPage from './pages/regular-page/RegularPage';
 import PostNewMeme from './components/post-new-meme/PostNewMeme';
 import ThemeSwitcher from './components/theme-switcher/ThemeSwitcher';
 import Error404 from './pages/error404/Error404';
+import Footer from './components/footer/Footer';
 
 function App() {
   useEffect(() => {
@@ -33,13 +34,14 @@ function App() {
       <button
         onClick={() => setModalOpen(true)}
         className="postNewMeme__btn"
-      >+
-      </button>
+      >+</button>
 
       <PostNewMeme 
         open={openModal}
         onClose={() => setModalOpen(false)}
-/>
+      />
+
+      <Footer />
     </BrowserRouter>
   );
 }
