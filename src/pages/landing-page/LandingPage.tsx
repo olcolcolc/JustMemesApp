@@ -30,7 +30,12 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   };
 
   React.useEffect(() => {
-    getMemes();
+    const unsubscribe = getMemes();
+  
+    // cleanup function to unsubscribe from the listener when the component unmounts
+    return () => {
+      unsubscribe();
+    };
   }, []);
   
   return (
