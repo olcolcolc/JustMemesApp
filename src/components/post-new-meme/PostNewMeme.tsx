@@ -2,6 +2,8 @@ import * as React from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./PostNewMeme.scss";
 
 interface PostNewMemeProps {
@@ -47,7 +49,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
         className="postNewMeme__modal-container"
       >
         <p onClick={onClose} className="postNewMeme__modal-container-closeBtn">
-          X
+          <FontAwesomeIcon icon={faTimes} />
         </p>
         <div className="postNewMeme__modal-content">
           <div className="postNewMeme__modal-content-title">Add your meme</div>
