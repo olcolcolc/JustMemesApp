@@ -4,6 +4,8 @@ import {collection, onSnapshot} from 'firebase/firestore'
 import { memesDb } from '../../firebase/firebase-config'
 import {Meme} from '../../interfaces/MemeInterface'
 
+
+
 interface TopPageProps {
   className?: string;
 }
@@ -21,6 +23,7 @@ const subscribeToTopMemes = () => {
         title: doc.data().title,
         url: doc.data().url,
         likes: doc.data().likes,
+        createdAt: doc.data().createdAt, // Konwersja daty
       };
     });
     const topMemesData = memesData.filter((meme) => meme.likes > 5);

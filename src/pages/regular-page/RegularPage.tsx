@@ -21,6 +21,7 @@ const subscribeToRegularMemes = () => {
         title: doc.data().title,
         url: doc.data().url,
         likes: doc.data().likes,
+        createdAt: doc.data().createdAt, // Konwersja daty
       };
     });
     const regularMemesData = memesData.filter((meme) => meme.likes <= 5);

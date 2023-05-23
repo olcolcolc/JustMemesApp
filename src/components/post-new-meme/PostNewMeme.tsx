@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { addDoc, collection } from 'firebase/firestore';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import { memesDb } from '../../firebase/firebase-config';
 import { Meme } from '../../interfaces/MemeInterface';
 import './PostNewMeme.scss'
@@ -20,14 +20,17 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
   const addMeme = async () => {
     const memesCollectionRef = collection(memesDb, 'memes');
     const newMeme: Meme = {
-        url, title, likes: 0,
-        id: ''
+      url,
+      title,
+      likes: 0,
+      id: '',
+      createdAt: Timestamp.fromDate(new Date()),
     };
     try {
       await addDoc(memesCollectionRef, newMeme);
       setUrl('');
       setTitle('');
-      onClose(); 
+      onClose();
     } catch (error) {
       console.error(error);
     }
