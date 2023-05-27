@@ -1,10 +1,11 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import "./MemeCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { Meme } from "../../interfaces/MemeInterface";
 import { memesDb } from "../../firebase/firebase-config";
+import { animated, useSpring } from '@react-spring/web'
 
 interface MemeCardProps {
   meme: Meme;
@@ -12,9 +13,15 @@ interface MemeCardProps {
 }
 
 const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
-  const [likes, setLikes] = React.useState(meme.likes);
+  const [likes, setLikes] = useState(meme.likes);
 
-  // Function to handle voting for a meme
+const opacityAnimation = useSpring({
+  from: {
+    opacity: 0
+  },
+  opacity: 1
+})
+
   const handleVote = async (id: string, vote: "+" | "-") => {
     const memeRef = doc(memesDb, "memes", id);
     const memeDoc = await getDoc(memeRef);
@@ -23,21 +30,21 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
       const memeData = memeDoc.data() as Meme;
       let updatedLikes = memeData.likes;
 
-      // Increment or decrement likes based on the vote type
       if (vote === "+") {
         updatedLikes += 1;
       } else if (vote === "-") {
         updatedLikes -= 1;
       }
 
-      // Update the likes in the database and set the updated likes in state
       await updateDoc(memeRef, { likes: updatedLikes });
       setLikes(updatedLikes);
     }
   };
 
   return (
-    <div className="memeCard">
+    <animated.div
+    className="memeCard" style={opacityAnimation}
+    >
       <img className="memeCard__img" src={meme.url} alt={meme.title} />
       <div className="memeCard__votes">
         <button
@@ -54,7 +61,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
           <FontAwesomeIcon icon={faThumbsDown} />
         </button>
       </div>
-    </div>
+    </animated.div>
   );
 };
 
