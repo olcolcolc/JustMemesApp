@@ -5,8 +5,7 @@ import { Meme } from "../../interfaces/MemeInterface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./PostNewMeme.scss";
-import { useSpring } from "@react-spring/core";
-import { animated } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 
 interface PostNewMemeProps {
   open: boolean;
@@ -17,41 +16,73 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
   // State variables for URL and title inputs
   const [url, setUrl] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState("");
 
   const animationProps = useSpring({
     opacity: open ? 1 : 0,
     config: { duration: 300 },
   });
 
+  const toastAnimationProps = useSpring({
+    transform: showToast ? "translateX(0)" : "translateX(35%)",
+  });
+
   // Function to add a new meme to the database
   const addMeme = async () => {
-    const memesCollectionRef = collection(memesDb, "memes");
-    const newMeme: Meme = {
-      url,
-      title,
-      likes: 0,
-      id: "",
-      createdAt: Timestamp.fromDate(new Date()),
-    };
-    try {
-      await addDoc(memesCollectionRef, newMeme);
-      setUrl("");
-      setTitle("");
-      onClose();
-    } catch (error) {
-      console.error(error);
+    if (!url && !title) {
+      setShowToast(true);
+      setToastMessage("Insert URL and title");
+    } else if (!isValidUrl(url)) {
+      setShowToast(true);
+      setToastMessage("Your URL is not valid");
+    } else if (!title) {
+      setShowToast(true);
+      setToastMessage("Insert title");
+    } else {
+      const memesCollectionRef = collection(memesDb, "memes");
+      const newMeme: Meme = {
+        url,
+        title,
+        likes: 0,
+        id: "",
+        createdAt: Timestamp.fromDate(new Date()),
+      };
+      try {
+        await addDoc(memesCollectionRef, newMeme);
+        setUrl("");
+        setTitle("");
+        onClose();
+        setShowToast(false); // Reset toast state
+        setToastMessage(""); // Reset toast message
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
+  const handleModalClose = () => {
+    setUrl(""); // Reset url state
+    setTitle(""); // Reset title state
+    onClose();
+    setShowToast(false); // Reset toast state
+    setToastMessage(""); // Reset toast message
+  };
+
+  const isValidUrl = (url: string) => {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlPattern.test(url);
+  };
+
   return open ? (
-    <animated.div style={animationProps} onClick={onClose} className="overlay">
+    <animated.div style={animationProps} onClick={handleModalClose} className="overlay">
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
         className="postNewMeme__modal-container"
       >
-        <p onClick={onClose} className="postNewMeme__modal-container-closeBtn">
+        <p onClick={handleModalClose} className="postNewMeme__modal-container-closeBtn">
           <FontAwesomeIcon icon={faTimes} />
         </p>
         <div className="postNewMeme__modal-content">
@@ -87,12 +118,18 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
             </button>
             <button
               className="postNewMeme__modal-btnContainer-btns"
-              onClick={onClose}
+              onClick={handleModalClose}
             >
               Cancel
             </button>
           </div>
         </div>
+        <animated.p
+          style={toastAnimationProps}
+          className="postNewMeme__modal-container__toast"
+        >
+          {toastMessage}
+        </animated.p>
       </div>
     </animated.div>
   ) : null;
