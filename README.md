@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Just Memes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Just Memes App built with React. It allows users to view and post memes to a Firebase Firestore database. Users can also vote on memes by liking or disliking them. The app consists of several components, including:
 
-## Available Scripts
+1. Landing Page: This page displays the memes. The memes are sorted based on their creation date, with the most recent ones appearing first.
 
-In the project directory, you can run:
+2. Top Page: This page displays the memes in a sorted order based on the number of likes they have received. 
 
-### `npm start`
+3. Regular Page: This page displays memes with a low number of likes, filtered to show memes with 5 or fewer likes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. Theme Switcher: The app includes a theme switcher feature that allows users to toggle between light and dark themes, providing a personalized visual experience.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+5. Post Meme App: This feature enables users to add new memes to the app. It includes URL validation to ensure that only valid URLs are accepted for the memes.
 
-### `npm test`
+The Just Memes App provides an enjoyable browsing experience for users, allowing them to explore and interact with a collection of memes while also providing options for customization through theme switching. Additionally, users can contribute to the app by posting their own memes, ensuring a dynamic and constantly evolving content pool.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+Before running the app, make sure you have Node.js and npm (Node Package Manager) installed on your system.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To get started with the app, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the dependencies by running npm install command.
+4. Start the development server by running npm start command.
+5. Open your browser and visit http://localhost:3000 to view the app.
 
-### `npm run eject`
+### Features
+- View a list of memes in a sorted order.
+- Vote on memes by liking or disliking them.
+- Post new memes by providing the URL and title.
+- Real-time updates: The app uses Firebase Firestore to provide real-time updates of memes.
+- Theme Switcher
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Technologies Used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app is built using the following technologies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React: A JavaScript library for building user interfaces.
+- Firebase Firestore: A NoSQL cloud database provided by Firebase.
+- Create React App: A tool for creating React applications with a pre-configured development environment.
+- React Spring: A library for animating React components, enabling smooth transitions and visual effects.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Directory Structure
 
-## Learn More
+The project directory has the following structure:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- src: Contains the source code of the app.
+    - assets: Contains logo and error image in svg.
+    - components: Contains reusable components used in the app.
+    - firebase: Contains the Firebase configuration file.
+    - interfaces: Contains TypeScript interfaces used in the app.
+    - pages: Contains the main pages of the app.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Deployment
+
+### Credits
+
+This app was created as a project for learning React and Firebase. It was developed by olcolcolc.
+
+### Feedback and Contributions
+
+If you have any feedback or would like to contribute to the project, please feel free to open an issue or submit a pull request on the GitHub repository.
