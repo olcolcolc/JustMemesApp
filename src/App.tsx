@@ -22,6 +22,7 @@ function App() {
   const [openModal, setModalOpen] = useState(false);
 
   return (
+    <>
     <BrowserRouter>
       <NavbarComponent/>
       <Routes>
@@ -30,6 +31,8 @@ function App() {
         <Route path="/regular" element={<RegularPage />} />
         <Route path="*" element={<Error404/>} />
       </Routes>
+      </BrowserRouter>
+
       <ThemeSwitcher/>
       <button
         onClick={() => setModalOpen(true)}
@@ -42,7 +45,7 @@ function App() {
       />
 
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
