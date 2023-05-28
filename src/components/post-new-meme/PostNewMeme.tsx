@@ -5,8 +5,7 @@ import { Meme } from "../../interfaces/MemeInterface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./PostNewMeme.scss";
-import { useSpring } from "@react-spring/core";
-import { animated } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 
 interface PostNewMemeProps {
   open: boolean;
@@ -23,6 +22,10 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
   const animationProps = useSpring({
     opacity: open ? 1 : 0,
     config: { duration: 300 },
+  });
+
+  const toastAnimationProps = useSpring({
+    transform: showToast ? "translateX(0)" : "translateX(100%)",
   });
 
   // Function to add a new meme to the database
@@ -50,21 +53,31 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
         setUrl("");
         setTitle("");
         onClose();
+        setShowToast(false); // Reset toast state
+        setToastMessage(""); // Reset toast message
       } catch (error) {
         console.error(error);
       }
     }
   };
 
+  const handleModalClose = () => {
+    setUrl(""); // Reset url state
+    setTitle(""); // Reset title state
+    onClose();
+    setShowToast(false); // Reset toast state
+    setToastMessage(""); // Reset toast message
+  };
+
   return open ? (
-    <animated.div style={animationProps} onClick={onClose} className="overlay">
+    <animated.div style={animationProps} onClick={handleModalClose} className="overlay">
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
         className="postNewMeme__modal-container"
       >
-        <p onClick={onClose} className="postNewMeme__modal-container-closeBtn">
+        <p onClick={handleModalClose} className="postNewMeme__modal-container-closeBtn">
           <FontAwesomeIcon icon={faTimes} />
         </p>
         <div className="postNewMeme__modal-content">
@@ -100,15 +113,18 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
             </button>
             <button
               className="postNewMeme__modal-btnContainer-btns"
-              onClick={onClose}
+              onClick={handleModalClose}
             >
               Cancel
             </button>
           </div>
         </div>
-        {showToast && (
-          <p className="postNewMeme__modal-container__toast">{toastMessage}</p>
-        )}
+        <animated.p
+          style={toastAnimationProps}
+          className="postNewMeme__modal-container__toast"
+        >
+          {toastMessage}
+        </animated.p>
       </div>
     </animated.div>
   ) : null;
