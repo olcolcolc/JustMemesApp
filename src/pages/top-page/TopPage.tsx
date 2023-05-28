@@ -30,9 +30,10 @@ const TopPage: React.FC<TopPageProps> = () => {
   };
 
   React.useEffect(() => {
+    // Subscribe to memes updates when the component mounts
     const unsubscribe = subscribeToTopMemes();
 
-    // cleanup function to unsubscribe from the listener when the component unmounts
+    // Cleanup function to unsubscribe from the listener when the component unmounts
     return () => {
       unsubscribe();
     };

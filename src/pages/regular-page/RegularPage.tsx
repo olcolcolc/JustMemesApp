@@ -30,9 +30,10 @@ const RegularPage: React.FC<RegularPageProps> = () => {
   };
 
   React.useEffect(() => {
+    // Subscribe to memes updates when the component mounts
     const unsubscribe = subscribeToRegularMemes();
 
-    // cleanup function to unsubscribe from the listener when the component unmounts
+    // Cleanup function to unsubscribe from the listener when the component unmounts
     return () => {
       unsubscribe();
     };
