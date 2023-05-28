@@ -5,6 +5,8 @@ import { Meme } from "../../interfaces/MemeInterface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./PostNewMeme.scss";
+import { useSpring } from "@react-spring/core";
+import { animated } from "@react-spring/web";
 
 interface PostNewMemeProps {
   open: boolean;
@@ -12,13 +14,14 @@ interface PostNewMemeProps {
 }
 
 const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
-  if (!open) return null;
-
   // State variables for URL and title inputs
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [url, setUrl] = React.useState("");
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [title, setTitle] = React.useState("");
+
+  const animationProps = useSpring({
+    opacity: open ? 1 : 0,
+    config: { duration: 300 },
+  });
 
   // Function to add a new meme to the database
   const addMeme = async () => {
@@ -40,8 +43,8 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     }
   };
 
-  return (
-    <div onClick={onClose} className="overlay">
+  return open ? (
+    <animated.div style={animationProps} onClick={onClose} className="overlay">
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -91,8 +94,8 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </animated.div>
+  ) : null;
 };
 
 export default PostNewMeme;
