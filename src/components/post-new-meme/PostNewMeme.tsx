@@ -17,6 +17,8 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
   // State variables for URL and title inputs
   const [url, setUrl] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastMessage, setToastMessage] = React.useState("");
 
   const animationProps = useSpring({
     opacity: open ? 1 : 0,
@@ -25,21 +27,32 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
 
   // Function to add a new meme to the database
   const addMeme = async () => {
-    const memesCollectionRef = collection(memesDb, "memes");
-    const newMeme: Meme = {
-      url,
-      title,
-      likes: 0,
-      id: "",
-      createdAt: Timestamp.fromDate(new Date()),
-    };
-    try {
-      await addDoc(memesCollectionRef, newMeme);
-      setUrl("");
-      setTitle("");
-      onClose();
-    } catch (error) {
-      console.error(error);
+    if (!url && !title) {
+      setShowToast(true);
+      setToastMessage("Insert url and title");
+    } else if (!url) {
+      setShowToast(true);
+      setToastMessage("Insert url");
+    } else if (!title) {
+      setShowToast(true);
+      setToastMessage("Insert title");
+    } else {
+      const memesCollectionRef = collection(memesDb, "memes");
+      const newMeme: Meme = {
+        url,
+        title,
+        likes: 0,
+        id: "",
+        createdAt: Timestamp.fromDate(new Date()),
+      };
+      try {
+        await addDoc(memesCollectionRef, newMeme);
+        setUrl("");
+        setTitle("");
+        onClose();
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -93,6 +106,9 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
             </button>
           </div>
         </div>
+        {showToast && (
+          <p className="postNewMeme__modal-container__toast">{toastMessage}</p>
+        )}
       </div>
     </animated.div>
   ) : null;

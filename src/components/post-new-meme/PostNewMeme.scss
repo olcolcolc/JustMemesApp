@@ -53,6 +53,12 @@
           color:#007bff;
         }
       }
+
+      &__toast{
+        position: absolute;
+        bottom: 20px;
+        left: 40%;
+      }
     }
   
     &-btnContainer-btns {
