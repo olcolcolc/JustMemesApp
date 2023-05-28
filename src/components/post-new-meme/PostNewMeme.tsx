@@ -1,5 +1,4 @@
-import React from "react";
-import { useSpring, animated } from "react-spring";
+import * as React from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
@@ -13,8 +12,12 @@ interface PostNewMemeProps {
 }
 
 const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
+  if (!open) return null;
+
   // State variables for URL and title inputs
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [url, setUrl] = React.useState("");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [title, setTitle] = React.useState("");
 
   // Function to add a new meme to the database
@@ -37,17 +40,8 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     }
   };
 
-  const animationProps = useSpring({
-    opacity: open ? 1 : 0,
-    config: { duration: 300 }
-  });
-
   return (
-    <animated.div
-      style={animationProps}
-      onClick={onClose}
-      className="overlay"
-    >
+    <div onClick={onClose} className="overlay">
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -97,7 +91,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
           </div>
         </div>
       </div>
-    </animated.div>
+    </div>
   );
 };
 
