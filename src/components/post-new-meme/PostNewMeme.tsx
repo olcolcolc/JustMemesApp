@@ -25,17 +25,17 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
   });
 
   const toastAnimationProps = useSpring({
-    transform: showToast ? "translateX(0)" : "translateX(100%)",
+    transform: showToast ? "translateX(0)" : "translateX(35%)",
   });
 
   // Function to add a new meme to the database
   const addMeme = async () => {
     if (!url && !title) {
       setShowToast(true);
-      setToastMessage("Insert url and title");
-    } else if (!url) {
+      setToastMessage("Insert URL and title");
+    } else if (!isValidUrl(url)) {
       setShowToast(true);
-      setToastMessage("Insert url");
+      setToastMessage("Your URL is not valid");
     } else if (!title) {
       setShowToast(true);
       setToastMessage("Insert title");
@@ -67,6 +67,11 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     onClose();
     setShowToast(false); // Reset toast state
     setToastMessage(""); // Reset toast message
+  };
+
+  const isValidUrl = (url: string) => {
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlPattern.test(url);
   };
 
   return open ? (
