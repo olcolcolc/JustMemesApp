@@ -57,6 +57,8 @@ The project directory has the following structure:
 
 ### Deployment
 
+The app has been deployed and is accessible at: https://just-memes-app.netlify.app/
+
 ### Credits
 
 This app was created as a project for learning React and Firebase. It was developed by olcolcolc.
