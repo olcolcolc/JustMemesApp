@@ -40,7 +40,8 @@ To get started with the app, follow these steps:
 The app is built using the following technologies:
 
 - React: A JavaScript library for building user interfaces.
-- TypeScript
+- Sass: CSS preprocessor with enhanced features like variables, nesting, and mixins for more efficient and maintainable styling.
+- TypeScript: Typed superset of JavaScript for improved code organization, readability, and tooling support, catching errors and enhancing development experience.
 - Firebase Firestore: A NoSQL cloud database provided by Firebase.
 - Create React App: A tool for creating React applications with a pre-configured development environment.
 - React Spring: A library for animating React components, enabling smooth transitions and visual effects.
