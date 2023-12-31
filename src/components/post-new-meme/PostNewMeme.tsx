@@ -90,12 +90,12 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
         }}
         className="postNewMeme__modal-container"
       >
-        <p
+        <button
           onClick={handleModalClose}
           className="postNewMeme__modal-container-closeBtn"
         >
           <FontAwesomeIcon icon={faTimes} />
-        </p>
+        </button>
         <div className="postNewMeme__modal-content">
           <div className="postNewMeme__modal-content-title">Add your meme</div>
           <form>

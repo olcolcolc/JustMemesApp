@@ -1,71 +1,65 @@
+.memeCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--bs-bg-secondary);
+  color: var(--bs-body-color);
+  align-items: center;
+  margin: 30px auto;
+  padding-top: 30px;
+  font-size: 20px;
+  width: 500px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 
-  .memeCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--bs-bg-secondary);
-    color: var(--bs-body-color);
-    align-items: center;
-    margin: 30px auto;
-    padding-top: 30px;
-    font-size: 20px;
-    width: 500px;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,.4);
+  &__img {
+    width: 350px;
+    height: auto;
+    margin: 20px;
+  }
 
-    &__img {
-        width: 350px;
-        height: auto;
-        margin: 20px;
-      }
-
-    &__votes {
+  &__votes {
     margin-bottom: 20px;
     display: flex;
     width: 300px;
     justify-content: space-between;
     align-items: center;
 
-        &-likes{
-            font-size: 30px;
-        }
-
-        &-likeBtn, &-dislikeBtn{
-        margin: 0 10px;
-        cursor: pointer;
-        font-size: 30px;
-        border-style: none;
-        color: var(--bs-body-color);
-        background-color: transparent;
-        transition: transform 0.1s;
-
-        &:hover{
-			color: #77298e;
-            }
-
-        &:active{
-            transform: translateY(-5px);
-            }
-        }
-
+    &-likes {
+      font-size: 30px;
     }
+
+    &-likeBtn,
+    &-dislikeBtn {
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 30px;
+      border-style: none;
+      color: var(--bs-body-color);
+      background-color: transparent;
+      transition: transform 0.1s;
+
+      &:hover {
+        color: #77298e;
+      }
+
+      &:focus {
+        outline: 2px solid #77298e;
+      }
+
+      &:active {
+        transform: translateY(-5px);
+      }
+    }
+  }
 }
 
 @media (max-width: 767px) {
-    .memeCard {
+  .memeCard {
     width: 100%;
     font-size: 16px;
 
     &__img {
-        width: 90%;
-        }
+      width: 90%;
     }
-    
-
+  }
 }
-  
-
-  
-
-  
-
-  
