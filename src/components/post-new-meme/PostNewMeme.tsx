@@ -72,6 +72,11 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
     setToastMessage(""); // Reset toast message
   };
 
+  const handleTitleClick = () => {
+    setToastMessage("Please describe the real content of meme");
+    setShowToast(true);
+  };
+
   // Url validation handler
   const isValidUrl = (url: string) => {
     const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
@@ -100,24 +105,39 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
           <div className="postNewMeme__modal-content-title">Add your meme</div>
           <form>
             <div className="postNewMeme__modal-content-formGroup">
-              <input
-                type="text"
-                className="postNewMeme__modal-content-formControl"
-                id="url"
-                placeholder="Enter your meme URL"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                className="postNewMeme__modal-content-formControl"
-                id="title"
-                placeholder="Enter your meme title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+              <div className="postNewMeme__modal-content-formGroup-url">
+                <label
+                  htmlFor="url"
+                  className="postNewMeme__modal-content-label"
+                >
+                  Enter your meme URL:
+                </label>
+                <input
+                  type="text"
+                  className="postNewMeme__modal-content-formControl"
+                  id="url"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                  aria-label="enter your meme url"
+                />
+              </div>
+              <div className="postNewMeme__modal-content-formGroup-title">
+                <label
+                  htmlFor="title"
+                  className="postNewMeme__modal-content-label"
+                >
+                  Enter your meme title:
+                </label>
+                <input
+                  type="text"
+                  className="postNewMeme__modal-content-formControl"
+                  id="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  onClick={handleTitleClick}
+                  aria-label="enter your meme title"
+                />
+              </div>
             </div>
           </form>
           <div className="postNewMeme__modal-btnContainer">
@@ -130,6 +150,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
             <button
               className="postNewMeme__modal-btnContainer-btns"
               onClick={handleModalClose}
+              aria-label="close post new meme modal"
             >
               Cancel
             </button>

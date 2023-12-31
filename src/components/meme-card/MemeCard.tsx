@@ -40,7 +40,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
       } else if (vote === "-") {
         updatedLikes -= 1;
       }
-      
+
       // Update likes in the meme doc in database and the likes state
       await updateDoc(memeRef, { likes: updatedLikes });
       setLikes(updatedLikes);
