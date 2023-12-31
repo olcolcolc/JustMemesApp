@@ -54,6 +54,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
         <button
           className="memeCard__votes-likeBtn"
           onClick={() => handleVote(meme.id, "+")}
+          aria-label="Click like"
         >
           <FontAwesomeIcon icon={faThumbsUp} />
         </button>
@@ -61,6 +62,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
         <button
           className="memeCard__votes-dislikeBtn"
           onClick={() => handleVote(meme.id, "-")}
+          aria-label="Click dislike"
         >
           <FontAwesomeIcon icon={faThumbsDown} />
         </button>
