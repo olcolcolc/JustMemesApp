@@ -1,34 +1,23 @@
 import * as React from "react";
 import MemeCard from "../../components/meme-card/MemeCard";
-import { collection, onSnapshot } from "firebase/firestore";
-import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
+import getMemes from "../../utils/getMemes";
 
 const LandingPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [memesPerPage] = React.useState(5);
-  const memesCollectionRef = collection(memesDb, "memes");
 
-  // Getting memes from firebase store
-  const getMemes = () => {
-    return onSnapshot(memesCollectionRef, (querySnapshot) => {
-      const memesData = querySnapshot.docs.map((doc) => {
-        return {
-          id: doc.id,
-          title: doc.data().title,
-          url: doc.data().url,
-          likes: doc.data().likes,
-          createdAt: doc.data().createdAt,
-        };
-      });
-      setMemes(memesData); // Update the memes state
-    });
-  };
-
+  // Get memesData
   React.useEffect(() => {
-    getMemes();
+    getMemes()
+      .then((memesData) => {
+        setMemes(memesData);
+      })
+      .catch((error) => {
+        console.error("Error fetching memes:", error);
+      });
   }, []);
 
   // Get current memes for pagination
