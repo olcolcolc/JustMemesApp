@@ -4,35 +4,24 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
+import fetchMemesData from "../../utils/getMemes";
 
 const RegularPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [memesPerPage] = React.useState(5);
-  const memesCollectionRef = collection(memesDb, "memes");
-
-  const subscribeToRegularMemes = () => {
-    return onSnapshot(memesCollectionRef, (querySnapshot) => {
-      const memesData = querySnapshot.docs.map((doc) => {
-        return {
-          id: doc.id,
-          title: doc.data().title,
-          url: doc.data().url,
-          likes: doc.data().likes,
-          createdAt: doc.data().createdAt,
-        };
-      });
-      const regularMemesData = memesData.filter((meme) => meme.likes <= 5);
-      setMemes(regularMemesData);
-    });
-  };
 
   React.useEffect(() => {
-    const unsubscribe = subscribeToRegularMemes();
-
-    return () => {
-      unsubscribe();
-    };
+    // Get memesData
+    fetchMemesData
+      .getRegularMemes()
+      .then((memesData) => {
+        setMemes(memesData);
+        console.log(memesData);
+      })
+      .catch((error) => {
+        console.error("Error fetching memes:", error);
+      });
   }, []);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);

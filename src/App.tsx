@@ -14,7 +14,6 @@ import getMemes from "./utils/getMemes";
 
 function App() {
   const [openModal, setModalOpen] = useState(false);
-  const [memes, setMemes] = React.useState<Meme[]>([]);
 
   useEffect(() => {
     //adding google fonts to script
@@ -22,15 +21,6 @@ function App() {
       Nunito: true,
     });
     document.body.style.fontFamily = "Nunito, sans-serif";
-
-    // Get memesData
-    getMemes()
-      .then((memesData) => {
-        setMemes(memesData);
-      })
-      .catch((error) => {
-        console.error("Error fetching memes:", error);
-      });
   }, []);
 
   return (
@@ -38,7 +28,7 @@ function App() {
       <BrowserRouter>
         <NavbarComponent />
         <Routes>
-          <Route path="/" element={<LandingPage landingPageMemes={memes} />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/top" element={<TopPage />} />
           <Route path="/regular" element={<RegularPage />} />
           <Route path="*" element={<Error404 />} />
