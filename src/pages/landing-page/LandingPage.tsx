@@ -2,31 +2,25 @@ import * as React from "react";
 import MemeCard from "../../components/meme-card/MemeCard";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
-import getMemes from "../../utils/getMemes";
 
-const LandingPage: React.FC = () => {
-  const [memes, setMemes] = React.useState<Meme[]>([]);
+interface LandingPageProps {
+  landingPageMemes: Meme[];
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ landingPageMemes }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [memesPerPage] = React.useState(5);
 
-  // Get memesData
-  React.useEffect(() => {
-    getMemes()
-      .then((memesData) => {
-        setMemes(memesData);
-      })
-      .catch((error) => {
-        console.error("Error fetching memes:", error);
-      });
-  }, []);
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Get current memes for pagination
   const indexOfLastMeme = currentPage * memesPerPage;
   const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
-  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
-
-  // Change page
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const currentMemes = landingPageMemes.slice(
+    indexOfFirstMeme,
+    indexOfLastMeme
+  );
 
   return (
     <div className="landingPage">
@@ -43,7 +37,7 @@ const LandingPage: React.FC = () => {
       </div>
       <Pagination
         memesPerPage={memesPerPage}
-        totalMemes={memes.length}
+        totalMemes={landingPageMemes.length}
         currentPage={currentPage}
         paginate={paginate}
         setCurrentPage={setCurrentPage}

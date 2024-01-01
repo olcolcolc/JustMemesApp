@@ -9,24 +9,36 @@ import PostNewMeme from "./components/post-new-meme/PostNewMeme";
 import ThemeSwitcher from "./components/theme-switcher/ThemeSwitcher";
 import Error404 from "./pages/error404/Error404";
 import Footer from "./components/footer/Footer";
+import { Meme } from "./interfaces/MemeInterface";
+import getMemes from "./utils/getMemes";
 
 function App() {
+  const [openModal, setModalOpen] = useState(false);
+  const [memes, setMemes] = React.useState<Meme[]>([]);
+
   useEffect(() => {
     //adding google fonts to script
     googleFonts.add({
       Nunito: true,
     });
     document.body.style.fontFamily = "Nunito, sans-serif";
-  }, []);
 
-  const [openModal, setModalOpen] = useState(false);
+    // Get memesData
+    getMemes()
+      .then((memesData) => {
+        setMemes(memesData);
+      })
+      .catch((error) => {
+        console.error("Error fetching memes:", error);
+      });
+  }, []);
 
   return (
     <>
       <BrowserRouter>
         <NavbarComponent />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage landingPageMemes={memes} />} />
           <Route path="/top" element={<TopPage />} />
           <Route path="/regular" element={<RegularPage />} />
           <Route path="*" element={<Error404 />} />
