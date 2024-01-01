@@ -3,6 +3,7 @@ import MemeCard from "../../components/meme-card/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
+import Pagination from "../../components/pagination/Pagination";
 
 interface LandingPageProps {
   className?: string;
@@ -10,6 +11,8 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [memesPerPage] = React.useState(5);
   const memesCollectionRef = collection(memesDb, "memes");
 
   // Getting memes from firebase store
@@ -29,18 +32,21 @@ const LandingPage: React.FC<LandingPageProps> = () => {
   };
 
   React.useEffect(() => {
-    // Subscribe to memes updates when the component mounts
-    const unsubscribe = getMemes();
-    // Cleanup function to unsubscribe from the listener when the component unmounts
-    return () => {
-      unsubscribe();
-    };
+    getMemes();
   }, []);
+
+  // Get current memes for pagination
+  const indexOfLastMeme = currentPage * memesPerPage;
+  const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
+  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
+
+  // Change page
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div className="landingPage">
       <div className="memeContainer">
-        {memes
+        {currentMemes
           .sort(
             (a, b) =>
               b.createdAt?.toDate()?.getTime() -
@@ -50,6 +56,11 @@ const LandingPage: React.FC<LandingPageProps> = () => {
             <MemeCard key={meme.id} meme={meme} />
           ))}
       </div>
+      <Pagination
+        memesPerPage={memesPerPage}
+        totalMemes={memes.length}
+        paginate={paginate}
+      />
     </div>
   );
 };
