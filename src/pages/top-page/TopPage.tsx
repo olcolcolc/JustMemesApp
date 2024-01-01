@@ -3,13 +3,12 @@ import MemeCard from "../../components/meme-card/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
+import Pagination from "../../components/pagination/Pagination";
 
-interface TopPageProps {
-  className?: string;
-}
-
-const TopPage: React.FC<TopPageProps> = () => {
+const TopPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [memesPerPage] = React.useState(5);
   const memesCollectionRef = collection(memesDb, "memes");
 
   // Getting memes from firebase store and filtered
@@ -39,13 +38,28 @@ const TopPage: React.FC<TopPageProps> = () => {
     };
   }, []);
 
+  // Paginate function
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Get current memes for pagination
+  const indexOfLastMeme = currentPage * memesPerPage;
+  const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
+  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
+
   return (
     <div className="topPage">
       <div className="memeContainer">
-        {memes.map((meme) => (
+        {currentMemes.map((meme) => (
           <MemeCard key={meme.id} meme={meme} />
         ))}
       </div>
+      <Pagination
+        memesPerPage={memesPerPage}
+        totalMemes={memes.length}
+        currentPage={currentPage}
+        paginate={paginate}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

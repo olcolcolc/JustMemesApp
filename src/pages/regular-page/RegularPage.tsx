@@ -3,16 +3,14 @@ import MemeCard from "../../components/meme-card/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
+import Pagination from "../../components/pagination/Pagination";
 
-interface RegularPageProps {
-  className?: string;
-}
-
-const RegularPage: React.FC<RegularPageProps> = () => {
+const RegularPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [memesPerPage] = React.useState(5);
   const memesCollectionRef = collection(memesDb, "memes");
 
-  // Getting memes from firebase store and filtered
   const subscribeToRegularMemes = () => {
     return onSnapshot(memesCollectionRef, (querySnapshot) => {
       const memesData = querySnapshot.docs.map((doc) => {
@@ -30,22 +28,33 @@ const RegularPage: React.FC<RegularPageProps> = () => {
   };
 
   React.useEffect(() => {
-    // Subscribe to memes updates when the component mounts
     const unsubscribe = subscribeToRegularMemes();
 
-    // Cleanup function to unsubscribe from the listener when the component unmounts
     return () => {
       unsubscribe();
     };
   }, []);
 
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const indexOfLastMeme = currentPage * memesPerPage;
+  const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
+  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
+
   return (
     <div className="topPage">
       <div className="memeContainer">
-        {memes.map((meme) => (
+        {currentMemes.map((meme) => (
           <MemeCard key={meme.id} meme={meme} />
         ))}
       </div>
+      <Pagination
+        memesPerPage={memesPerPage}
+        totalMemes={memes.length}
+        currentPage={currentPage}
+        paginate={paginate}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

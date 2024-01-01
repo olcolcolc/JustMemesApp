@@ -5,11 +5,7 @@ import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
 
-interface LandingPageProps {
-  className?: string;
-}
-
-const LandingPage: React.FC<LandingPageProps> = () => {
+const LandingPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [memesPerPage] = React.useState(5);
