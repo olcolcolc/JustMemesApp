@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+
+  &__arrow {
+    font-size: 14px;
+    margin: 0 5px;
+  }
+
+  &__page {
+    &-item {
+      margin: 0 5px;
+    }
+    &-link {
+      text-decoration: none;
+      color: inherit;
+
+      &.active {
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__arrow:hover,
+  &__page-link:hover {
+    color: #005abb;
+    cursor: pointer;
+  }
+}
