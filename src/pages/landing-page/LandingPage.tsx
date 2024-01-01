@@ -59,7 +59,9 @@ const LandingPage: React.FC<LandingPageProps> = () => {
       <Pagination
         memesPerPage={memesPerPage}
         totalMemes={memes.length}
+        currentPage={currentPage}
         paginate={paginate}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );
