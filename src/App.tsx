@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import googleFonts from "google-fonts";
 import NavbarComponent from "./components/navbar/NavbarComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

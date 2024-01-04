@@ -4,14 +4,17 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
+import usePagination from "../../components/pagination/usePagination"; // Importing the pagination hook
 
 const LandingPage: React.FC = () => {
+  // State to store meme data and current page number
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [memesPerPage] = React.useState(5);
+
+  // Reference to the 'memes' collection in the Firebase Firestore
   const memesCollectionRef = collection(memesDb, "memes");
 
-  // Getting memes from firebase store
+  // Get memes data from Firebase Firestore
   const getMemes = () => {
     return onSnapshot(memesCollectionRef, (querySnapshot) => {
       const memesData = querySnapshot.docs.map((doc) => {
@@ -23,41 +26,44 @@ const LandingPage: React.FC = () => {
           createdAt: doc.data().createdAt,
         };
       });
-      setMemes(memesData); // Update the memes state
+      setMemes(memesData); // Set memes into state
     });
   };
 
+  // Fetch memes data when the component mounts
   React.useEffect(() => {
     getMemes();
   }, []);
 
-  // Get current memes for pagination
-  const indexOfLastMeme = currentPage * memesPerPage;
-  const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
-  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
-
-  // Change page
+  // Function to update the current page number
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Using the pagination hook to manage meme pagination
+  const { currentMemes } = usePagination(
+    memes, // Array of memes
+    currentPage, // Current active page
+    paginate // Function to handle page changes
+  );
 
   return (
     <div className="landingPage">
       <div className="memeContainer">
+        {/* Displaying the memes sorted by date */}
         {currentMemes
           .sort(
             (a, b) =>
               b.createdAt?.toDate()?.getTime() -
               a.createdAt?.toDate()?.getTime()
-          ) // Sorted by date, from oldest to newest
+          )
           .map((meme) => (
-            <MemeCard key={meme.id} meme={meme} />
+            <MemeCard key={meme.id} meme={meme} /> // Rendering MemeCard for each meme
           ))}
       </div>
+      {/* Pagination component */}
       <Pagination
-        memesPerPage={memesPerPage}
-        totalMemes={memes.length}
-        currentPage={currentPage}
-        paginate={paginate}
-        setCurrentPage={setCurrentPage}
+        totalMemes={memes.length} // Total number of memes
+        currentPage={currentPage} // Current active page
+        paginate={paginate} // Function to change the current page
       />
     </div>
   );
