@@ -4,14 +4,14 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
+import usePagination from "../../components/pagination/usePagination";
 
 const RegularPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [memesPerPage] = React.useState(5);
   const memesCollectionRef = collection(memesDb, "memes");
 
-  const subscribeToRegularMemes = () => {
+  const getRegularMemes = () => {
     return onSnapshot(memesCollectionRef, (querySnapshot) => {
       const memesData = querySnapshot.docs.map((doc) => {
         return {
@@ -22,24 +22,21 @@ const RegularPage: React.FC = () => {
           createdAt: doc.data().createdAt,
         };
       });
+      // Filtering memes with likes less than or equal to 5
       const regularMemesData = memesData.filter((meme) => meme.likes <= 5);
       setMemes(regularMemesData);
     });
   };
 
   React.useEffect(() => {
-    const unsubscribe = subscribeToRegularMemes();
-
-    return () => {
-      unsubscribe();
-    };
+    getRegularMemes();
   }, []);
 
+  // Handle pagination changes
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const indexOfLastMeme = currentPage * memesPerPage;
-  const indexOfFirstMeme = indexOfLastMeme - memesPerPage;
-  const currentMemes = memes.slice(indexOfFirstMeme, indexOfLastMeme);
+  // Using the pagination hook to manage meme pagination
+  const { currentMemes } = usePagination(memes, currentPage, paginate);
 
   return (
     <div className="topPage">
@@ -49,11 +46,9 @@ const RegularPage: React.FC = () => {
         ))}
       </div>
       <Pagination
-        memesPerPage={memesPerPage}
         totalMemes={memes.length}
         currentPage={currentPage}
         paginate={paginate}
-        setCurrentPage={setCurrentPage}
       />
     </div>
   );
