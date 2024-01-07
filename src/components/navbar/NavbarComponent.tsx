@@ -12,11 +12,11 @@ const Navbar: React.FC<NavbarProps> = () => {
         <img className="navbar__logo" src={logoIMG} alt="Just Meme logo"></img>
       </NavLink>
       <div className="navbar__btnContainer">
-        <NavLink className="navbar__link" to="/top">
-          <button className="navbar__btn-top">Top</button>
+        <NavLink className="navbar__btn-top" to="/top">
+          Top
         </NavLink>
-        <NavLink className="navbar__link" to="/regular">
-          <button className="navbar__btn-regular">Regular</button>
+        <NavLink className="navbar__btn-regular" to="/regular">
+          Regular
         </NavLink>
       </div>
     </nav>
