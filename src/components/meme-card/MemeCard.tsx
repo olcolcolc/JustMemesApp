@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { Meme } from "../../interfaces/MemeInterface";
-import { memesDb } from "../../firebase/firebase-config";
+import { memesDb } from "../../firebase/firebase";
 import { animated, useSpring } from "@react-spring/web";
 
 interface MemeCardProps {

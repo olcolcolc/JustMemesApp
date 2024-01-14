@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
-import { memesDb } from "../../firebase/firebase-config";
+import { memesDb } from "../../firebase/firebase";
 import { Meme } from "../../interfaces/MemeInterface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
