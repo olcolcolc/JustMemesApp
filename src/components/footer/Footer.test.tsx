@@ -6,5 +6,9 @@ describe("Footer Component", () => {
     render(<Footer />);
     const footerText = screen.getByText(/olcolcolc\. All rights reserved\./i);
     expect(footerText).toBeInTheDocument();
+
+    // Sprawdź, czy pewien tekst nie występuje
+    const unexpectedText = screen.queryByText("blablabla");
+    expect(unexpectedText).not.toBeInTheDocument();
   });
 });

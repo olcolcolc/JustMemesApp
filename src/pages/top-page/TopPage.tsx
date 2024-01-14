@@ -1,7 +1,7 @@
 import * as React from "react";
 import MemeCard from "../../components/meme-card/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
-import { memesDb } from "../../firebase/firebase";
+import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
 import Pagination from "../../components/pagination/Pagination";
 import usePagination from "../../components/pagination/usePagination"; // Import hook

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { updateDoc, doc, getDoc } from "firebase/firestore";
 import { Meme } from "../../interfaces/MemeInterface";
-import { memesDb } from "../../firebase/firebase";
+import { memesDb } from "../../firebase/firebase-config";
 import { animated, useSpring } from "@react-spring/web";
 
 interface MemeCardProps {
@@ -59,11 +59,14 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
         >
           <FontAwesomeIcon icon={faThumbsUp} />
         </button>
-        <div className="memeCard__votes-likes">{likes}</div>
+        <div className="memeCard__votes-likes" data-testid="likes-count">
+          {likes}
+        </div>
         <button
           className="memeCard__votes-dislikeBtn"
           onClick={() => handleVote(meme.id, "-")}
           aria-label="Click dislike"
+          data-testid="dislike-button"
         >
           <FontAwesomeIcon icon={faThumbsDown} />
         </button>

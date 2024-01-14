@@ -1,0 +1,28 @@
+import React from "react";
+import MemeCard from "./MemeCard";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { assertSucceeds } from "@firebase/rules-unit-testing";
+import { initializeApp } from "firebase/app";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import "text-encoding";
+
+const JUST_MEMES_APP_ID = "just-memes-app";
+
+// Sample meme data for testing
+const sampleMeme = {
+  id: "123",
+  url: "https://example.com/image.jpg",
+  title: "Test Meme",
+  likes: 5,
+  createdAt: "date",
+};
+
+describe("Memes App", () => {
+  it("Can read items the read-only", async () => {
+    const app = initializeApp({ projectId: JUST_MEMES_APP_ID }); // Use initializeApp from compat module
+    const db = getFirestore(app); // Use getFirestore to get Firestore instance
+    const testDocRef = doc(db, "readonly", "testDoc"); // Create a reference to the document
+    const testDocSnapshot = getDoc(testDocRef); // Use getDoc to get document snapshot
+    await assertSucceeds(testDocSnapshot);
+  });
+});
