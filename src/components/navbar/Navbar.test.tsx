@@ -1,19 +1,28 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./Navbar";
 
 describe("Navbar component", () => {
-  it("renders navbar correctly", () => {
+  it("renders correctly", () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
-      </BrowserRouter>
+      </Router>
     );
 
     expect(screen.getByAltText("Just Meme logo")).toBeInTheDocument();
-
     expect(screen.getByText("Top")).toBeInTheDocument();
-
     expect(screen.getByText("Regular")).toBeInTheDocument();
+  });
+
+  it("navigates to correct routes", () => {
+    render(
+      <Router>
+        <Navbar />
+      </Router>
+    );
+
+    expect(screen.getByText("Top")).toHaveAttribute("href", "/top");
+    expect(screen.getByText("Regular")).toHaveAttribute("href", "/regular");
   });
 });
