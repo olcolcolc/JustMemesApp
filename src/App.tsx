@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import googleFonts from "google-fonts";
-import NavbarComponent from "./components/navbar/NavbarComponent";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TopPage from "./pages/top-page/TopPage";
 import LandingPage from "./pages/landing-page/LandingPage";
@@ -9,6 +8,7 @@ import PostNewMeme from "./components/post-new-meme/PostNewMeme";
 import ThemeSwitcher from "./components/theme-switcher/ThemeSwitcher";
 import Error404 from "./pages/error404/Error404";
 import Footer from "./components/footer/Footer";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavbarComponent />
+        <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/top" element={<TopPage />} />
