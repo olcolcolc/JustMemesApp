@@ -1,5 +1,4 @@
-import * as React from "react";
-import "./NavbarComponent.scss";
+import "./Navbar.scss";
 import logoIMG from "../../assets/logo.svg";
 import { NavLink } from "react-router-dom";
 
