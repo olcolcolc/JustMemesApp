@@ -47,7 +47,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="landingPage">
-      <div className="memeContainer">
+      <ul className="memeContainer">
         {/* Displaying the memes sorted by date */}
         {currentMemes
           .sort(
@@ -58,7 +58,7 @@ const LandingPage: React.FC = () => {
           .map((meme) => (
             <MemeCard key={meme.id} meme={meme} /> // Rendering MemeCard for each meme
           ))}
-      </div>
+      </ul>
       {/* Pagination component */}
       <Pagination
         totalMemes={memes.length} // Total number of memes

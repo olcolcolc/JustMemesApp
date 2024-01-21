@@ -40,11 +40,11 @@ const TopPage: React.FC = () => {
 
   return (
     <div className="topPage">
-      <div className="memeContainer">
+      <ul className="memeContainer">
         {currentMemes.map((meme) => (
           <MemeCard key={meme.id} meme={meme} />
         ))}
-      </div>
+      </ul>
       <Pagination
         totalMemes={memes.length}
         currentPage={currentPage}
