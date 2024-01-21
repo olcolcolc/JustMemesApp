@@ -31,7 +31,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
     // Check if the meme document exists
     if (memeDoc.exists()) {
       const memeData = memeDoc.data() as Meme;
-      // Create a variable to store upadted likes count
+      // Create a variable to store updated likes count
       let updatedLikes = memeData.likes;
 
       // Update likes count based on the vote type
@@ -41,14 +41,14 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
         updatedLikes -= 1;
       }
 
-      // Update likes in the meme doc in database and the likes state
+      // Update likes in the meme doc in the database and the likes state
       await updateDoc(memeRef, { likes: updatedLikes });
       setLikes(updatedLikes);
     }
   };
 
   return (
-    <animated.div className="memeCard" style={opacityAnimation}>
+    <animated.li className="memeCard" style={opacityAnimation}>
       <img className="memeCard__img" src={meme.url} alt={meme.title} />
       <div className="memeCard__votes">
         <button
@@ -67,7 +67,7 @@ const MemeCard: React.FC<MemeCardProps> = ({ meme }) => {
           <FontAwesomeIcon icon={faThumbsDown} />
         </button>
       </div>
-    </animated.div>
+    </animated.li>
   );
 };
 
