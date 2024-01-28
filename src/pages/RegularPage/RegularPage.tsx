@@ -39,7 +39,7 @@ const RegularPage: React.FC = () => {
   const { currentMemes } = usePagination(memes, currentPage, paginate);
 
   return (
-    <div className="topPage">
+    <div data-testid="regularPage">
       <ul className="memeContainer">
         {currentMemes.map((meme) => (
           <MemeCard key={meme.id} meme={meme} />

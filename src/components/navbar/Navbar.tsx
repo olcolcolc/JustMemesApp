@@ -6,7 +6,7 @@ interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
   return (
-    <nav className="navbar">
+    <nav className="navbar" data-testid="navbar">
       <NavLink to="/">
         <img className="navbar__logo" src={logoIMG} alt="Just Meme logo"></img>
       </NavLink>

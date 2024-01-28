@@ -46,7 +46,7 @@ const LandingPage: React.FC = () => {
   );
 
   return (
-    <div className="landingPage">
+    <div className="landingPage" data-testid="landingPage">
       <ul className="memeContainer">
         {/* Displaying the memes sorted by date */}
         {currentMemes

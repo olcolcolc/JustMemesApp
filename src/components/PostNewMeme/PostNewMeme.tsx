@@ -90,6 +90,7 @@ const PostNewMeme: React.FC<PostNewMemeProps> = ({ open, onClose }) => {
       className="overlay"
     >
       <div
+        data-testid="postNewMeme"
         onClick={(e) => {
           e.stopPropagation();
         }}
