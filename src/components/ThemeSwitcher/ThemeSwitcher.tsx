@@ -13,6 +13,7 @@ export default function ThemeSwitcher(): JSX.Element {
   return (
     <div>
       <button
+        data-testid="themeSwitcher__button"
         className="themeSwitcher__button"
         aria-label={`Change ${theme === "light" ? "dark" : "light"} mode`}
         role="switch"
