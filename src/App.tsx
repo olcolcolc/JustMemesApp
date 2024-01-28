@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import googleFonts from "google-fonts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TopPage from "./pages/top-page/TopPage";
-import LandingPage from "./pages/landing-page/LandingPage";
-import RegularPage from "./pages/regular-page/RegularPage";
-import PostNewMeme from "./components/post-new-meme/PostNewMeme";
-import ThemeSwitcher from "./components/theme-switcher/ThemeSwitcher";
-import Error404 from "./pages/error404/Error404";
-import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
+import TopPage from "./pages/TopPage/TopPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import RegularPage from "./pages/RegularPage/RegularPage";
+import PostNewMeme from "./components/PostNewMeme/PostNewMeme";
+import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
+import Error404 from "./pages/Error404/Error404";
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   useEffect(() => {

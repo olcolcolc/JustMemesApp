@@ -1,17 +1,17 @@
 import * as React from "react";
-import MemeCard from "../../components/meme-card/MemeCard";
+import MemeCard from "../../components/MemeCard/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
-import Pagination from "../../components/pagination/Pagination";
-import usePagination from "../../components/pagination/usePagination"; // Import hook
+import Pagination from "../../components/Pagination/Pagination";
+import usePagination from "../../components/Pagination/usePagination";
 
-const TopPage: React.FC = () => {
+const RegularPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
   const [currentPage, setCurrentPage] = React.useState(1);
   const memesCollectionRef = collection(memesDb, "memes");
 
-  const getTopMemes = () => {
+  const getRegularMemes = () => {
     return onSnapshot(memesCollectionRef, (querySnapshot) => {
       const memesData = querySnapshot.docs.map((doc) => {
         return {
@@ -22,14 +22,14 @@ const TopPage: React.FC = () => {
           createdAt: doc.data().createdAt,
         };
       });
-      // Filtering memes with likes greater than 5
-      const topMemesData = memesData.filter((meme) => meme.likes > 5);
-      setMemes(topMemesData);
+      // Filtering memes with likes less than or equal to 5
+      const regularMemesData = memesData.filter((meme) => meme.likes <= 5);
+      setMemes(regularMemesData);
     });
   };
 
   React.useEffect(() => {
-    getTopMemes();
+    getRegularMemes();
   }, []);
 
   // Handle pagination changes
@@ -54,4 +54,4 @@ const TopPage: React.FC = () => {
   );
 };
 
-export default TopPage;
+export default RegularPage;
