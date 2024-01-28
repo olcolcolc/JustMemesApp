@@ -1,10 +1,10 @@
 import * as React from "react";
-import MemeCard from "../../components/meme-card/MemeCard";
+import MemeCard from "../../components/MemeCard/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
-import Pagination from "../../components/pagination/Pagination";
-import usePagination from "../../components/pagination/usePagination"; // Importing the pagination hook
+import Pagination from "../../components/Pagination/Pagination";
+import usePagination from "../../components/Pagination/usePagination"; // Importing the pagination hook
 
 const LandingPage: React.FC = () => {
   // State to store meme data and current page number

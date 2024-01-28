@@ -1,10 +1,10 @@
 import * as React from "react";
-import MemeCard from "../../components/meme-card/MemeCard";
+import MemeCard from "../../components/MemeCard/MemeCard";
 import { collection, onSnapshot } from "firebase/firestore";
 import { memesDb } from "../../firebase/firebase-config";
 import { Meme } from "../../interfaces/MemeInterface";
-import Pagination from "../../components/pagination/Pagination";
-import usePagination from "../../components/pagination/usePagination";
+import Pagination from "../../components/Pagination/Pagination";
+import usePagination from "../../components/Pagination/usePagination";
 
 const RegularPage: React.FC = () => {
   const [memes, setMemes] = React.useState<Meme[]>([]);
