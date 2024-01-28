@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA1YImM8lnaXGbaPGit8xIqiLKhmozj5Xo",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "just-memes-app.firebaseapp.com",
   projectId: "just-memes-app",
   storageBucket: "just-memes-app.appspot.com",
